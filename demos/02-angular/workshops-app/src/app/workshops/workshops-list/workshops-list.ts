@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingSpinner } from '../../common/loading-spinner/loading-spinner';
+import { ErrorAlert } from '../../common/error-alert/error-alert';
 import { Workshops } from '../workshops';
 
 import IWorkshop from '../models/IWorkshop';
@@ -11,7 +12,8 @@ import IWorkshop from '../models/IWorkshop';
   imports: [
     CommonModule,
     NgbModule,
-    LoadingSpinner
+    LoadingSpinner,
+    ErrorAlert
   ],
   templateUrl: './workshops-list.html',
   styleUrl: './workshops-list.scss'

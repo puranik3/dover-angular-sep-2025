@@ -2,9 +2,9 @@
     <!-- You can add *ngIf="loading" instead -->
     <app-loading-spinner></app-loading-spinner>
 } @else if ( error ) {
-    <ngb-alert [dismissible]="false" type="danger">
-        {{ error.message }}
-    </ngb-alert>
+    <app-error-alert
+        [error]="error"
+    ></app-error-alert>
 } @else {
     <!-- <div *ngFor="let workshop of workshops">
         {{ workshop.name }}
