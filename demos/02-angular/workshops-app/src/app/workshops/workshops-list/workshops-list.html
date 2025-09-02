@@ -9,7 +9,11 @@
     <!-- <div *ngFor="let workshop of workshops">
         {{ workshop.name }}
     </div> -->
-    @for ( workshop of workshops; track workshop.id  ) {
-        <div>{{ workshop.name }}</div>
-    }
+    <div class="row">
+        @for ( workshop of workshops; track workshop.id  ) {
+            <div class="col-12 col-lg-4">
+                <app-item [workshop]="workshop"></app-item>
+            </div>
+        }
+    </div>
 }
