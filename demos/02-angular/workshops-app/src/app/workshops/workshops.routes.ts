@@ -8,16 +8,19 @@ export const routes: Routes = [
     {
         path: 'workshops',
         component: WorkshopsList,
-        title: 'List of workshops'
+        title: 'List of workshops',
+        pathMatch: 'full'
     },
     {
         path: 'workshops/add',
         component: AddWorkshop,
-        title: 'List of workshops'
+        title: 'List of workshops',
+        pathMatch: 'full'
     },
     {
         path: 'workshops/favorites',
         component: Favorites,
-        title: 'Favorite workshops'
+        title: 'Favorite workshops',
+        pathMatch: 'full'
     },
 ];
