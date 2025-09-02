@@ -5,7 +5,6 @@ import { ILocation } from '../workshops/models/IWorkshop';
   name: 'location'
 })
 export class LocationPipe implements PipeTransform {
-
   transform(location: ILocation, length: number = 0 ): unknown {
     const locationStr = `${location.address}, ${location.city}, ${location.state}`;
 
@@ -17,5 +16,4 @@ export class LocationPipe implements PipeTransform {
 
     return locationStr;
   }
-
 }

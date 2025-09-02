@@ -24,14 +24,12 @@ export class WorkshopsList implements OnInit {
   workshops : IWorkshop[] = [];
   error: Error | null = null;
   loading: boolean = true;
+  page = 2;
 
-  constructor( private w : Workshops ) {
-  }
-
-  ngOnInit() {
+  fetchWorkshops() {
     this.loading = true;
 
-    this.w.getWorkshops().subscribe({ // pass an Observer
+    this.w.getWorkshops( this.page ).subscribe({ // pass an Observer
       next: ( workshops ) => {
         this.workshops = workshops;
         this.loading = false;
@@ -42,5 +40,19 @@ export class WorkshopsList implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  constructor( private w : Workshops ) {
+  }
+
+  ngOnInit() {
+    this.fetchWorkshops();
+  }
+
+  changePage( by : number ) {
+    // alert( 'You would like to change the page?' );
+    this.page += by;
+
+    this.fetchWorkshops();
   }
 }

@@ -11,8 +11,15 @@ export class Workshops {
     // this.http = http;
   }
 
-  getWorkshops() {
+  getWorkshops( page : number ) {
     // Observable object is returned
-    return this.http.get<IWorkshop[]>(`https://workshops-server.onrender.com/workshops/`)
+    return this.http.get<IWorkshop[]>(
+      `https://workshops-server.onrender.com/workshops/`,
+      {
+        params: {
+          _page: page
+        }
+      }
+    )
   }
 }
