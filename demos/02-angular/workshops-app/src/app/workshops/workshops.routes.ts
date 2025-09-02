@@ -24,3 +24,6 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
 ];
+
+// export default routes;
+// export default [];
