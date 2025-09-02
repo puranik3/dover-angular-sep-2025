@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import IWorkshop from '../../models/IWorkshop';
 
 @Component({
   selector: 'app-item',
   imports: [
-    RouterLink
+    RouterLink,
+    DatePipe
   ],
   templateUrl: './item.html',
   styleUrl: './item.scss'
