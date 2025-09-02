@@ -1,13 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { LocationPipe } from '../../../common/location-pipe';
 import IWorkshop from '../../models/IWorkshop';
 
 @Component({
   selector: 'app-item',
   imports: [
     RouterLink,
-    DatePipe
+    DatePipe,
+    LocationPipe
   ],
   templateUrl: './item.html',
   styleUrl: './item.scss'
