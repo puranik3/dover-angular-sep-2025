@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingSpinner } from '../../common/loading-spinner/loading-spinner';
 import { ErrorAlert } from '../../common/error-alert/error-alert';
@@ -26,7 +27,7 @@ export class WorkshopsList implements OnInit {
   workshops : IWorkshop[] = [];
   error: Error | null = null;
   loading: boolean = true;
-  page = 2;
+  page = 1;
 
   fetchWorkshops() {
     this.loading = true;
@@ -44,17 +45,44 @@ export class WorkshopsList implements OnInit {
     });
   }
 
-  constructor( private w : Workshops ) {
+  constructor(
+      private w : Workshops,
+      private ar : ActivatedRoute,
+      private router : Router
+  ) {
   }
 
   ngOnInit() {
-    this.fetchWorkshops();
+    // Observable - emits many events over time
+    this.ar.queryParamMap.subscribe({
+      next: ( queryParamMap ) => {
+        const page = queryParamMap.get('page');
+        console.log( page );
+
+        if ( page ) {
+          this.page = +page;
+        } else {
+          this.page = 1;
+        }
+
+        this.fetchWorkshops();
+      }
+    });
   }
 
   changePage( by : number ) {
     // alert( 'You would like to change the page?' );
-    this.page += by;
+    const page = this.page + by;
 
-    this.fetchWorkshops();
+    this.router.navigate(
+      ['/workshops'],
+      {
+        queryParams: {
+            page: page,
+        },
+    })
+
+    // not needed anymore -> the queryParamMap subscription will take care of fecthing data when ?page changes
+    // this.fetchWorkshops();
   }
 }
