@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,8 +21,15 @@ export class Item {
   @Input()
   workshop!: IWorkshop;
 
+  @Output()
+  delete = new EventEmitter();
+
   icons = {
     faPencil,
     faTrash
+  }
+
+  onDeleteWorkshop() {
+    this.delete.emit();
   }
 }

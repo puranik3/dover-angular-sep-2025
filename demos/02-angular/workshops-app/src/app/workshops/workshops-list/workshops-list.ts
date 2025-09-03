@@ -106,4 +106,20 @@ export class WorkshopsList implements OnInit {
             },
         });
     }
+
+    deleteWorkshop(workshop: IWorkshop) {
+        this.w.deleteWorkshopById(workshop.id).subscribe({
+        next: () => {
+            alert( 'Deleted successfully' );
+            // update this.workshops
+            this.workshops = this.workshops.filter(
+                (w) => w.id !== workshop.id
+            );
+            this.filterWorkshops();
+        },
+        error: () => {
+            alert( this.error?.message );
+        },
+    });
+    }
 }

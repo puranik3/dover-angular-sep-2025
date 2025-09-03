@@ -38,4 +38,8 @@ export class Workshops {
             `${this.apiUrl}/workshops/${workshopId}`
         );
     }
+
+    deleteWorkshopById(workshopId: number) {
+        return this.http.delete<void>(`${this.apiUrl}/workshops/${workshopId}`);
+    }
 }
