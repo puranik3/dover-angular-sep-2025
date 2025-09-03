@@ -18,9 +18,61 @@
                     {{ workshop.startDate | date : "EEEE, MMMM d, y" }} -
                     {{ workshop.endDate | date : "EEEE, MMMM d, y" }}
                 </div>
+
                 <div>{{ workshop.location | location }}</div>
+
+                <!-- Add this -->
+                <div>
+                    <span class="me-4">
+                        <fa-icon
+                            [icon]="
+                                workshop.modes.inPerson
+                                    ? icons.faCheckCircle
+                                    : icons.faTimesCircle
+                            "
+                        ></fa-icon>
+                        In person
+                    </span>
+                    <span>
+                        <fa-icon
+                            [icon]="
+                                workshop.modes.online
+                                    ? icons.faCheckCircle
+                                    : icons.faTimesCircle
+                            "
+                        ></fa-icon>
+                        Online
+                    </span>
+                </div>
             </div>
+
             <div [innerHTML]="workshop.description"></div>
         </div>
+    </div>
+
+    <div class="mt-5">
+    <!-- Alternatively, [routerLink]="['.']" -->
+    <button
+        [routerLink]="['/workshops', workshop.id]"
+        routerLinkActive="btn-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="btn btn-primary btn-sm btn-child-link me-2"
+    >
+        Sessions List
+    </button>
+    <!-- Alternatively, [routerLink]="['add-session']" -->
+    <button
+        [routerLink]="['/workshops', workshop.id, 'add-session']"
+        routerLinkActive="btn-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="btn btn-primary btn-sm btn-child-link"
+    >
+        Add a session
+    </button>
+</div>
+
+    <!-- placeholder for child route component -->
+    <div class="my-4">
+        <router-outlet></router-outlet>
     </div>
 }

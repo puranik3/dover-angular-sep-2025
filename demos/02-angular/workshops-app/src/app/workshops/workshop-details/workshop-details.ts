@@ -1,6 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+// this gives the individual icons we want to use
+import {
+    faCheckCircle,
+    faTimesCircle,
+} from '@fortawesome/free-regular-svg-icons';
 
 import { LoadingSpinner } from '../../common/loading-spinner/loading-spinner';
 import { ErrorAlert } from '../../common/error-alert/error-alert';
@@ -15,7 +22,9 @@ import IWorkshop from '../models/IWorkshop';
         LoadingSpinner,
         ErrorAlert,
         DatePipe,
-        LocationPipe
+        LocationPipe,
+        FontAwesomeModule,
+        RouterModule
     ],
     templateUrl: './workshop-details.html',
     styleUrl: './workshop-details.scss',
@@ -29,12 +38,15 @@ export class WorkshopDetails implements OnInit {
     error: Error | null = null;
     loading: boolean = true;
 
+    icons = {
+        faCheckCircle,
+        faTimesCircle
+    };
+
     // constructor(
     //   private w : Workshops,
     //   private ar : ActivatedRoute
-    // ) {
-
-    // }
+    // ) { }
 
     ngOnInit() {
       this.ar.paramMap.subscribe({
