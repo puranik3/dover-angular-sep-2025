@@ -2,12 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import IWorkshop, { Category } from './models/IWorkshop';
 
+import { environment } from '../../environments/environment';
+
 type ParamsGetWorkshop = { _page: number; category?: string };
 
 @Injectable({
     providedIn: 'root',
 })
 export class Workshops {
+    apiUrl = environment.apiUrl;
+
     // http : HttpClient;
     constructor(private http: HttpClient) {
         // this.http = http;
@@ -23,7 +27,7 @@ export class Workshops {
         }
 
         // Observable object is returned
-        return this.http.get<IWorkshop[]>(`https://workshops-server.onrender.com/workshops/`, {
+        return this.http.get<IWorkshop[]>(`${this.apiUrl}/workshops/`, {
             // params: params
             params,
         });
@@ -31,7 +35,7 @@ export class Workshops {
 
     getWorkshopById(workshopId: number) {
         return this.http.get<IWorkshop>(
-            `https://workshops-server.onrender.com/workshops/${workshopId}`
+            `${this.apiUrl}/workshops/${workshopId}`
         );
     }
 }

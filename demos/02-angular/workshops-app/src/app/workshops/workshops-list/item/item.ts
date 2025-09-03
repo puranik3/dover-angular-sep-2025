@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { LocationPipe } from '../../../common/location-pipe';
 import IWorkshop from '../../models/IWorkshop';
 
@@ -9,7 +11,8 @@ import IWorkshop from '../../models/IWorkshop';
   imports: [
     RouterLink,
     DatePipe,
-    LocationPipe
+    LocationPipe,
+    FontAwesomeModule
   ],
   templateUrl: './item.html',
   styleUrl: './item.scss'
@@ -17,4 +20,9 @@ import IWorkshop from '../../models/IWorkshop';
 export class Item {
   @Input()
   workshop!: IWorkshop;
+
+  icons = {
+    faPencil,
+    faTrash
+  }
 }
