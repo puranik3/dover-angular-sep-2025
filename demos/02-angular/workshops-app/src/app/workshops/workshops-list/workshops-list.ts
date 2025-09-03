@@ -9,7 +9,7 @@ import { Pagination } from '../../common/pagination/pagination';
 import { Workshops } from '../workshops';
 import { Item } from './item/item';
 
-import IWorkshop from '../models/IWorkshop';
+import IWorkshop, { Category } from '../models/IWorkshop';
 
 @Component({
     selector: 'app-workshops-list',
@@ -32,11 +32,12 @@ export class WorkshopsList implements OnInit {
     loading: boolean = true;
     page = 1;
     filterKey = '';
+    category : Category | '' = '';
 
     fetchWorkshops() {
         this.loading = true;
 
-        this.w.getWorkshops(this.page).subscribe({
+        this.w.getWorkshops(this.page, this.category).subscribe({
             // pass an Observer
             next: (workshops) => {
                 this.workshops = workshops;
@@ -63,6 +64,7 @@ export class WorkshopsList implements OnInit {
             next: (queryParamMap) => {
                 const page = queryParamMap.get('page');
                 console.log(page);
+                this.category = queryParamMap.get('category') as Category || '';
 
                 if (page) {
                     this.page = +page;
@@ -93,5 +95,15 @@ export class WorkshopsList implements OnInit {
         this.filteredWorkshops = this.workshops.filter(
             w => w.name.toUpperCase().includes( this.filterKey.toUpperCase() )
         )
+    }
+
+    filterByCategory( category : Category | '' ) {
+        this.router.navigate(['/workshops'], {
+            queryParams: {
+                page: this.page,
+                // category: category
+                category
+            },
+        });
     }
 }
