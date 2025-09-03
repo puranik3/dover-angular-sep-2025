@@ -51,25 +51,25 @@
     </div>
 
     <div class="mt-5">
-    <!-- Alternatively, [routerLink]="['.']" -->
-    <button
-        [routerLink]="['/workshops', workshop.id]"
-        routerLinkActive="btn-active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="btn btn-primary btn-sm btn-child-link me-2"
-    >
-        Sessions List
-    </button>
-    <!-- Alternatively, [routerLink]="['add-session']" -->
-    <button
-        [routerLink]="['/workshops', workshop.id, 'add-session']"
-        routerLinkActive="btn-active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="btn btn-primary btn-sm btn-child-link"
-    >
-        Add a session
-    </button>
-</div>
+        <!-- Alternatively, [routerLink]="['.']" -->
+        <button
+            [routerLink]="['/workshops', workshop.id]"
+            routerLinkActive="btn-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="btn btn-primary btn-sm btn-child-link me-2"
+        >
+            Sessions List
+        </button>
+        <!-- Alternatively, [routerLink]="['add-session']" -->
+        <button
+            [routerLink]="['/workshops', workshop.id, 'add-session']"
+            routerLinkActive="btn-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="btn btn-primary btn-sm btn-child-link"
+        >
+            Add a session
+        </button>
+    </div>
 
     <!-- placeholder for child route component -->
     <div class="my-4">
