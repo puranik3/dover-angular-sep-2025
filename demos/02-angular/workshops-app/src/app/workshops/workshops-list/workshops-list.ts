@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingSpinner } from '../../common/loading-spinner/loading-spinner';
 import { ErrorAlert } from '../../common/error-alert/error-alert';
+import { Pagination } from '../../common/pagination/pagination';
 import { Workshops } from '../workshops';
 import { Item } from './item/item';
 
@@ -15,7 +16,8 @@ import IWorkshop from '../models/IWorkshop';
     NgbModule,
     LoadingSpinner,
     ErrorAlert,
-    Item
+    Item,
+    Pagination
   ],
   templateUrl: './workshops-list.html',
   styleUrl: './workshops-list.scss'
