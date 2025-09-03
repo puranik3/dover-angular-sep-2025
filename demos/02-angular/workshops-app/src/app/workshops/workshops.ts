@@ -5,30 +5,33 @@ import IWorkshop, { Category } from './models/IWorkshop';
 type ParamsGetWorkshop = { _page: number; category?: string };
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class Workshops {
-  // http : HttpClient;
-  constructor( private http : HttpClient )  {
-    // this.http = http;
-  }
-
-  getWorkshops( page : number, category: Category | '' = '' ) {
-    const params: ParamsGetWorkshop = {
-        _page: page,
-    };
-
-    if ( category !== '' ) {
-      params.category = category;
+    // http : HttpClient;
+    constructor(private http: HttpClient) {
+        // this.http = http;
     }
 
-    // Observable object is returned
-    return this.http.get<IWorkshop[]>(
-      `https://workshops-server.onrender.com/workshops/`,
-      {
-        // params: params
-        params
-      }
-    )
-  }
+    getWorkshops(page: number, category: Category | '' = '') {
+        const params: ParamsGetWorkshop = {
+            _page: page,
+        };
+
+        if (category !== '') {
+            params.category = category;
+        }
+
+        // Observable object is returned
+        return this.http.get<IWorkshop[]>(`https://workshops-server.onrender.com/workshops/`, {
+            // params: params
+            params,
+        });
+    }
+
+    getWorkshopById(workshopId: number) {
+        return this.http.get<IWorkshop>(
+            `https://workshops-server.onrender.com/workshops/${workshopId}`
+        );
+    }
 }
