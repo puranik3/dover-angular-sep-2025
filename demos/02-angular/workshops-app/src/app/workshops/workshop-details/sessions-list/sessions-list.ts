@@ -34,6 +34,12 @@ export class SessionsList {
     }
 
     updateVote( session : ISession, voteType : VoteType ) {
-        console.log( session, voteType );
+        this.sessionsService.voteForSession(session.id, voteType)
+        .subscribe({
+            next: (updatedSession) => {
+                session.upvoteCount = updatedSession.upvoteCount;
+            },
+            // @todo handle error
+        });
     }
 }
