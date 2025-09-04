@@ -12,6 +12,20 @@ interface ISession {
     "upvoteCount": number
 }
 
+// interface ISessionWithoutId {
+//     "workshopId": number,
+//     "sequenceId": number,
+//     "name": string,
+//     "speaker": string,
+//     "duration": number,
+//     "level": Level,
+//     "abstract": string,
+//     "upvoteCount": number
+// }
+
+// The above is same as...
+// Omit<ISession, "id" | "upvoteCount">
+
 export type {
     ISession as default,
     Level
