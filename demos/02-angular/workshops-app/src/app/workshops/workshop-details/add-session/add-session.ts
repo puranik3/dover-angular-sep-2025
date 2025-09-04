@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, NgForm, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import ISession from '../../models/ISession';
@@ -15,38 +15,40 @@ import { Sessions } from '../../sessions';
   styleUrl: './add-session.scss'
 })
 export class AddSession {
-  addSessionForm = new FormGroup({
-      "sequenceId": new FormControl(
+  private fb = inject(FormBuilder);
+
+  addSessionForm = this.fb.group({
+      "sequenceId": [
           '', // initial value of the input
           [
               // the list of validators
               Validators.required,
               Validators.pattern('\\d+'),
           ],
-      ),
-      name: new FormControl(
+      ],
+      name: [
           '',
           [Validators.required, Validators.pattern('[A-Z][A-Za-z ]+')],
-      ),
-      speaker: new FormControl(
+      ],
+      speaker: [
           '',
           [
               Validators.required,
               Validators.pattern('[A-Z][A-Za-z ]+(,[A-Z ][A-Za-z ]+)*'),
           ],
-      ),
-      duration: new FormControl(
+      ],
+      duration: [
           '',
           [Validators.required, Validators.min(0.5), Validators.max(10)],
-      ),
-      level: new FormControl(
+      ],
+      level: [
           '',
           [Validators.required]
-      ),
-      abstract: new FormControl(
+      ],
+      abstract: [
           '',
           [Validators.required, Validators.minLength(2)],
-      ),
+      ],
   });
 
   get sequenceId() {
@@ -75,7 +77,8 @@ export class AddSession {
 
   constructor(
     private activatedRoute : ActivatedRoute,
-    private sessionsService : Sessions
+    private sessionsService : Sessions,
+    // private fb: FormBuilder
   ) {
   }
 
