@@ -58,4 +58,8 @@ export class AuthenticationService {
   isLoggedIn() {
     return !!localStorage.getItem(AuthenticationService.KEY_USER);
   }
+
+  logout() {
+    localStorage.removeItem( AuthenticationService.KEY_USER );
+  }
 }

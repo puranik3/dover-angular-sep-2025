@@ -33,7 +33,6 @@ export const routes: Routes = [
     },
     {
         path: 'workshops/:id',
-        component: WorkshopDetails,
         loadComponent: () =>
             import('./workshop-details/workshop-details').then(
                 (m) => m.WorkshopDetails
