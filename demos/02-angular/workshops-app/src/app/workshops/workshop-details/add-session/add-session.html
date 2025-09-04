@@ -8,8 +8,40 @@
 <form id="add-session-form">
     <div class="mb-3">
         <label for="sequenceId" class="form-label">Sequence ID</label>
-        <input type="text" class="form-control" id="sequenceId" />
-        <div class="error-message"></div>
+        <!--
+            Add ngModel to get an object which maintains...
+            - value
+            - valid / invalid (boolean)
+            - errors: { required: ..., pattern: ... }
+        -->
+        <input
+            type="text"
+            class="form-control"
+            id="sequenceId"
+            name="sequenceId"
+            required
+            pattern="^\d+$"
+            ngModel
+            #sequenceId="ngModel"
+            autocomplete="off"
+        />
+        @if ( sequenceId.errors !== null && ( sequenceId.dirty || sequenceId.touched ) ) {
+            <div class="error-message">
+                <!-- {{ sequenceId.errors | json }}
+                <div>valid = {{ sequenceId.valid }}</div>
+                <div>invalid = {{ sequenceId.invalid }}</div>
+                <div>dirty = {{ sequenceId.dirty }}</div>
+                <div>pristine = {{ sequenceId.pristine }}</div>
+                <div>touched = {{ sequenceId.touched }}</div>
+                <div>untouched = {{ sequenceId.untouched }}</div> -->
+                @if(sequenceId.errors['required']) {
+                    <div>This is required</div>
+                }
+                @if(sequenceId.errors['pattern']) {
+                    <div>Provide a number</div>
+                }
+            </div>
+        }
     </div>
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
