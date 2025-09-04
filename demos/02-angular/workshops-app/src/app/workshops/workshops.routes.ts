@@ -21,6 +21,11 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'workshops/edit/:id',
+        component: AddWorkshop,
+        title: 'Edit a workshop',
+    },
+    {
         path: 'workshops/favorites',
         component: Favorites,
         title: 'Favorite workshops',
@@ -29,17 +34,18 @@ export const routes: Routes = [
     {
         path: 'workshops/:id',
         component: WorkshopDetails,
+        loadComponent: () =>
+            import('./workshop-details/workshop-details').then(
+                (m) => m.WorkshopDetails
+            ),
         // title: Name of the workshop goes in here
         children: [
             {
                 path: '',
-                component: SessionsList
+                loadChildren: () =>
+                import('./workshop-details.routes').then((m) => m.parentRoutes),
             },
-            {
-                path: 'add-session',
-                component: AddSession
-            }
-        ]
+        ],
     },
 ];
 
