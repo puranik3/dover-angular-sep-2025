@@ -297,6 +297,8 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 Now, your workshops list page and other pages must be able to fetch data.
+
+### Step 6: Setting up route guards
 - Implement route guards that prevent navigation to protected pages for unauthenticated users. Create an `auth` guard inside `common/auth` folder.
 ```
 ng g g common/auth/auth
@@ -334,7 +336,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   canActivate: [authGuard],
 },
 ```
+- __NOTE__: The above route configuration is just a sample. You can add route guard for other pages that you wish to protect.
 - You should now be able to navigate to the protected pages (like `/workshops`) only if you are logged in.
+
+### Step 7: Setting up a Subject to share user authentication status, and navigation links in the menu based on user authentication status
 - Now, make the Navigation Menu change when user logs in and logs out. The navigation menu should not show the links to protected pages ("List of Workshops", "Add Workshop" etc.) when user is logged out. Instead it should show only the login page link. When the user is logged in it shows the links to protected pages, and a logout button. To pass on this information in real-time to the navigation menu (i.e. when the user __logs in__ or __logs out__) we need a `BehaviorSubject` that emits an event through an associated `Observable`.
 - `auth/common/auth.service.ts`
 ```ts

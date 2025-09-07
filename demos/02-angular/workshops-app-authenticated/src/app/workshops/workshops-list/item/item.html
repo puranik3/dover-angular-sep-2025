@@ -1,0 +1,40 @@
+<div class="card p-3">
+  <div class="card-action-buttons">
+      <button
+        class="me-2 btn btn-info btn-sm btn-action-button"
+        title="Edit this workshop"
+        [routerLink]="['/workshops', 'edit', workshop.id]"
+    >
+        <fa-icon [icon]="icons.faPencil"></fa-icon>
+    </button>
+      <button
+        class="btn btn-danger btn-sm btn-action-button"
+        title="Delete this workshop"
+        (click)="onDeleteWorkshop()"
+      >
+          <fa-icon [icon]="icons.faTrash"></fa-icon>
+      </button>
+  </div>
+
+  <div class="card-img-top-wrapper">
+    <img [src]="workshop.imageUrl" class="card-img-top" [alt]="workshop.name" />
+  </div>
+  <div class="card-body">
+    <h5 class="card-title my-0">{{ workshop.name }}</h5>
+    <div class="card-text">
+      <div>{{ workshop.time }}</div>
+      <div>
+        {{ workshop.startDate | date:'MMMM d, y'}} -
+        {{ workshop.endDate | date:'MMMM d, y'}}
+      </div>
+      <!-- <div>{{ workshop.location.address }}, {{ workshop.location.city }}, {{ workshop.location.state }} </div> -->
+      <div>{{ workshop.location | location:60 }}</div>
+    </div>
+    <a
+      class="btn btn-primary btn-sm mt-4"
+      [routerLink]="[workshop.id]"
+      [attr.aria-label]="'Know more about ' + workshop.name"
+      >Know more</a
+    >
+  </div>
+</div>

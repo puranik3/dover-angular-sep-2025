@@ -27,15 +27,18 @@ export const routes: Routes = [
         path: 'workshops/edit/:id',
         component: AddWorkshop,
         title: 'Edit a workshop',
+        canActivate: [authGuard],
     },
     {
         path: 'workshops/favorites',
         component: Favorites,
         title: 'Favorite workshops',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [authGuard],
     },
     {
         path: 'workshops/:id',
+        canActivate: [authGuard],
         loadComponent: () =>
             import('./workshop-details/workshop-details').then(
                 (m) => m.WorkshopDetails
